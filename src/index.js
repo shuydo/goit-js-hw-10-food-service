@@ -1,32 +1,13 @@
-import './styles.css';
-// import menu from './menu.js';
-const menu = require('./menu.json');
-import mTemplate from './card_templ.hbs'; // =========== конец иморта и определение имён тем для body
-const Theme = {
-  LIGHT: 'light-theme',
-  DARK: 'dark-theme',
-}; // ============================================================== объявление привязок для узлов
-const bodyRef = document.body;
-const toggleRef = document.querySelector('#theme-switch-toggle');
-const gridRef = document.querySelector('.menu'); // ================ слушатель тоглера
-toggleRef.addEventListener('change', toggleValue);
+import './styles.css'; const menu = require('./menu.json');
+import mTemplate from './card_templ.hbs';
+toggler.addEventListener('change', () => {
+  document.body.classList.toggle('dark-theme');
+  if (toggler.checked) return localStorage.setItem('dark', '1');
+  localStorage.setItem('dark', '0')});
 if (JSON.parse(localStorage.getItem('dark'))) {
-  // ================ пресеттер при входе на страницу
-  toggleRef.checked = true;
-  bodyRef.classList.add(Theme.DARK);
-} else {
-  localStorage.setItem('dark', 'false');
-  bodyRef.classList.add(Theme.LIGHT);
-} // =============================================================== обработчик прослушивателя
-function toggleValue() {
-  if (toggleRef.checked) {
-    localStorage.setItem('dark', 'true');
-    bodyRef.classList.remove(Theme.LIGHT);
-    bodyRef.classList.add(Theme.DARK);
-  } else {
-    localStorage.setItem('dark', 'false');
-    bodyRef.classList.remove(Theme.DARK);
-    bodyRef.classList.add(Theme.LIGHT);
-  }
-} // ============================================================ парс по шаблону
-gridRef.innerHTML = menu.reduce((acc, Val) => acc + mTemplate(Val), '');
+  toggler.checked = true;
+  document.body.classList.toggle('dark-theme')}
+document.querySelector('.menu').innerHTML = menu.reduce((acc, Val) => acc + mTemplate(Val),'')
+
+// Если в стилях селектор body.light-theme грохнуть, а его строки перекинуть в body выше, 
+// и в html в 2х местах theme-switch-toggle переименовать в toggler

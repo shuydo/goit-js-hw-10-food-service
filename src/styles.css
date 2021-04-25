@@ -14,12 +14,15 @@ body {
     Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   transition: color 150ms var(--timing-function),
     background-color 150ms var(--timing-function);
+
+      background-color: #fff;
+      color: #333333;
 }
 
-body.light-theme {
+/* body.light-theme {
   background-color: #fff;
   color: #333333;
-}
+} */
 
 body.dark-theme {
   background-color: #333333;
